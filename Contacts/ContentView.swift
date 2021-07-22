@@ -8,73 +8,64 @@
 import SwiftUI
 import CoreData
 
+
+/*
+https://www.hackingwithswift.com/samples/friendface.json
+
+
+*/
+
+
+
 struct ContentView: View {
-    @Environment(\.managedObjectContext) private var viewContext
+	
+	@State private var friendList = [APIFormat]()
+	var body: some View {
+		NavigationView{
+			List{
+				ForEach(friendList, id: \.self.id){friend in
+					HStack{
+						Image(systemName: "person.circle")
+						Text("\(friend.name)")
+						NavigationLink("", destination: DetailView(person:friend, friendList: friendList))
+					}
+				}
+			}
+			
+			.navigationBarTitle("Friends", displayMode: .inline)
+			.navigationBarItems(leading: EditButton(), trailing:
+									Button(action: {fetchData()})
+										{Image(systemName: "tray.and.arrow.down.fill")})
+		}
+	}
+	
+	func fetchData() {
+		let url = URL(string: "https://www.hackingwithswift.com/samples/friendface.json")!
+		let request = URLRequest(url: url)
+		URLSession.shared.dataTask(with: request){(data, _, error) in
+			
+			if let data = data{
+				if let decodedData = try? JSONDecoder().decode([APIFormat].self, from: data){
+					self.friendList = decodedData
+				}
+				else{
+					print("Decoding Failed")
+				}
+			}
+			else{
+				print("No data found")
+			}
 
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
-        animation: .default)
-    private var items: FetchedResults<Item>
-
-    var body: some View {
-        List {
-            ForEach(items) { item in
-                Text("Item at \(item.timestamp!, formatter: itemFormatter)")
-            }
-            .onDelete(perform: deleteItems)
-        }
-        .toolbar {
-            #if os(iOS)
-            EditButton()
-            #endif
-
-            Button(action: addItem) {
-                Label("Add Item", systemImage: "plus")
-            }
-        }
-    }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
-    }
+			
+		}.resume()
+		
+	}
 }
 
-private let itemFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    formatter.timeStyle = .medium
-    return formatter
-}()
+
 
 struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-    }
+	static var previews: some View {
+		ContentView()
+	}
 }

@@ -13,6 +13,11 @@
 		C3707FAD26A2F2D700619991 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3707FAC26A2F2D700619991 /* Preview Assets.xcassets */; };
 		C3707FAF26A2F2D700619991 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3707FAE26A2F2D700619991 /* Persistence.swift */; };
 		C3707FB226A2F2D700619991 /* Contacts.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C3707FB026A2F2D700619991 /* Contacts.xcdatamodeld */; };
+		C3707FBB26A2F46600619991 /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3707FBA26A2F46600619991 /* APIResponse.swift */; };
+		C3848C6326A3370100F866AD /* APIResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3848C6226A3370100F866AD /* APIResult.swift */; };
+		C39105A026A94B3A004E6389 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C391059F26A94B3A004E6389 /* DetailView.swift */; };
+		C39105A326A96D2B004E6389 /* Test+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39105A126A96D2B004E6389 /* Test+CoreDataClass.swift */; };
+		C39105A426A96D2B004E6389 /* Test+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39105A226A96D2B004E6389 /* Test+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +29,11 @@
 		C3707FAE26A2F2D700619991 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		C3707FB126A2F2D700619991 /* Contacts.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Contacts.xcdatamodel; sourceTree = "<group>"; };
 		C3707FB326A2F2D700619991 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C3707FBA26A2F46600619991 /* APIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
+		C3848C6226A3370100F866AD /* APIResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResult.swift; sourceTree = "<group>"; };
+		C391059F26A94B3A004E6389 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		C39105A126A96D2B004E6389 /* Test+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Test+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		C39105A226A96D2B004E6389 /* Test+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Test+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +66,7 @@
 		C3707FA426A2F2D300619991 /* Contacts */ = {
 			isa = PBXGroup;
 			children = (
+				C3707FB926A2F43700619991 /* Models */,
 				C3707FA526A2F2D300619991 /* ContactsApp.swift */,
 				C3707FA726A2F2D300619991 /* ContentView.swift */,
 				C3707FA926A2F2D700619991 /* Assets.xcassets */,
@@ -63,6 +74,7 @@
 				C3707FB326A2F2D700619991 /* Info.plist */,
 				C3707FB026A2F2D700619991 /* Contacts.xcdatamodeld */,
 				C3707FAB26A2F2D700619991 /* Preview Content */,
+				C391059F26A94B3A004E6389 /* DetailView.swift */,
 			);
 			path = Contacts;
 			sourceTree = "<group>";
@@ -73,6 +85,17 @@
 				C3707FAC26A2F2D700619991 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		C3707FB926A2F43700619991 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C39105A126A96D2B004E6389 /* Test+CoreDataClass.swift */,
+				C39105A226A96D2B004E6389 /* Test+CoreDataProperties.swift */,
+				C3707FBA26A2F46600619991 /* APIResponse.swift */,
+				C3848C6226A3370100F866AD /* APIResult.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -145,9 +168,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				C3707FB226A2F2D700619991 /* Contacts.xcdatamodeld in Sources */,
+				C3848C6326A3370100F866AD /* APIResult.swift in Sources */,
 				C3707FAF26A2F2D700619991 /* Persistence.swift in Sources */,
+				C39105A426A96D2B004E6389 /* Test+CoreDataProperties.swift in Sources */,
+				C39105A026A94B3A004E6389 /* DetailView.swift in Sources */,
 				C3707FA826A2F2D300619991 /* ContentView.swift in Sources */,
+				C3707FBB26A2F46600619991 /* APIResponse.swift in Sources */,
 				C3707FA626A2F2D300619991 /* ContactsApp.swift in Sources */,
+				C39105A326A96D2B004E6389 /* Test+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
