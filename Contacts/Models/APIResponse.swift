@@ -6,14 +6,12 @@
 //
 
 import Foundation
-
-
 struct APIFormat: Codable, Identifiable{
 	
-	var id: String
+	var id: UUID
 	var isActive: Bool
 	var name: String
-	var age: Int
+	var age: Int64
 	var company: String
 	var email: String
 	var address: String
@@ -22,9 +20,19 @@ struct APIFormat: Codable, Identifiable{
 	var tags: [String]
 	var friends: [Friend]
 	
+	var formattedReg: String {
+		let formatter = DateFormatter()
+		formatter.dateFormat = "dd MM yy"
+		let reg = formatter.date(from: registered)
+		formatter.dateStyle = .medium
+		return formatter.string(from: reg ?? Date())
+	}
+	
 	struct Friend: Codable, Identifiable{
-		var id: String
+		var id: UUID
 		var name: String
+		
+		
 	}
 	
 }

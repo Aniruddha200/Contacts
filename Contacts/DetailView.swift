@@ -8,27 +8,37 @@
 import SwiftUI
 
 struct DetailView: View {
-	let person: APIFormat
-	let friendList: [APIFormat]
+	let person: Person
+	let friendList: FetchedResults<Person>
     var body: some View {
-		VStack(spacing: 30){
+		VStack(spacing: 10){
 				Image(systemName: "person")
 					.resizable()
 					.scaledToFit()
-					.frame(width: 100, height: 100, alignment: .center)
+					.frame(width: 60, height: 60, alignment: .center)
 					.padding()
-				Text("Email: \t \(person.email)")
+			Section(header: Text("Details").font(.title)){
+				Text("From: \(person.realCompany)")
 					.fontWeight(.bold)
-				Text("Address: \t \(person.address)")
+				Text("Email: \t \(person.realEmail)")
 					.fontWeight(.bold)
+				Text("Address: \t \(person.realAddress)")
+					.fontWeight(.bold)
+					.padding(.horizontal)
+			}
+			
+			Section(header: Text("About").font(.title)){
 				ScrollView(.vertical){
-					Text("\(person.about)")
+					Text("\(person.realAbout)")
 						.padding()
 				}
-			Section(header: Text("Peer List")){
+				.frame(height: 100, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+			}
+			
+			Section(header: Text("Peer List").font(.title)){
 				List{
-				ForEach(person.friends, id: \.self.id){ peer in
-					let details = self.peerDetails(list: friendList, id: peer.id)
+				ForEach(person.realFriends, id: \.self.id){ peer in
+					let details = self.peerDetails(list: friendList, id: peer.realID)
 					HStack{
 						Image(systemName: "person")
 						Text("\(details?.name ?? "Unknown")")
@@ -39,13 +49,13 @@ struct DetailView: View {
 				}
 			}
 			
+			
 		}
-				
 		
-		.navigationBarTitle("\(person.name)")
+		.navigationBarTitle("\(person.realName)")
     }
 	
-	func peerDetails(list: [APIFormat], id: String) -> APIFormat? {
+	func peerDetails(list: FetchedResults<Person>, id: UUID) -> Person? {
 		guard let index = list.firstIndex(where: {$0.id == id}) else{
 			return nil
 		}
@@ -55,9 +65,4 @@ struct DetailView: View {
 	
 }
 
-struct DetailView_Previews: PreviewProvider {
-    static var previews: some View {
-		Text("")
-//        DetailView()
-    }
-}
+

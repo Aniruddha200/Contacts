@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+
+
 @main
 struct ContactsApp: App {
     let persistenceController = PersistenceController.shared
