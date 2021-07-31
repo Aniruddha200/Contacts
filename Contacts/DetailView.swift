@@ -12,30 +12,31 @@ struct DetailView: View {
 	let friendList: FetchedResults<Person>
     var body: some View {
 		VStack(spacing: 10){
-				Image(systemName: "person")
+			VStack{
+				Image(systemName: "person.circle.fill")
 					.resizable()
 					.scaledToFit()
 					.frame(width: 60, height: 60, alignment: .center)
 					.padding()
-			Section(header: Text("Details").font(.title)){
-				Text("From: \(person.realCompany)")
-					.fontWeight(.bold)
-				Text("Email: \t \(person.realEmail)")
-					.fontWeight(.bold)
-				Text("Address: \t \(person.realAddress)")
-					.fontWeight(.bold)
-					.padding(.horizontal)
 			}
+			VStack(alignment: .leading){
+				Text("Company: \(person.realCompany)")
+				Text("Email: \t \(person.realEmail)")
+				Text("Address: \t \(person.realAddress)")
+				
+			}
+			.padding(.horizontal, 5)
 			
-			Section(header: Text("About").font(.title)){
+			
+			Section(header: Text("About")){
 				ScrollView(.vertical){
 					Text("\(person.realAbout)")
-						.padding()
 				}
-				.frame(height: 100, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+				.padding(.horizontal)
+				.frame(height: 200)
 			}
 			
-			Section(header: Text("Peer List").font(.title)){
+			Section(header: Text("Peer List")){
 				List{
 				ForEach(person.realFriends, id: \.self.id){ peer in
 					let details = self.peerDetails(list: friendList, id: peer.realID)
@@ -47,6 +48,7 @@ struct DetailView: View {
 					
 				}
 				}
+				.frame(height: 220)
 			}
 			
 			
