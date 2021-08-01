@@ -7,6 +7,17 @@
 
 import SwiftUI
 
+
+struct LazyView<Content: View>: View {
+	let build: () -> Content
+	init(_ build: @autoclosure @escaping () -> Content) {
+		self.build = build
+	}
+	var body: Content {
+		build()
+	}
+}
+
 struct DetailView: View {
 	let person: Person
 	let friendList: FetchedResults<Person>

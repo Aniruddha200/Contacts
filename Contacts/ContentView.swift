@@ -26,7 +26,7 @@ struct ContentView: View {
 					HStack{
 						Image(systemName: "person.circle")
 						Text("\(person.realName)")
-						NavigationLink("", destination: DetailView(person:person, friendList: persons))
+						NavigationLink("", destination: LazyView(DetailView(person:person, friendList: persons)))
 					}
 				}
 				.onDelete(perform: delete)
